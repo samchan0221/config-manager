@@ -11,3 +11,4 @@ require('after.tmux_navigator')
 require('colorizer').setup {'*'}
 require('nvim-ts-autotag').setup()
 require('after.lsp')
+require('mappings')
