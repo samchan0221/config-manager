@@ -41,7 +41,8 @@ local config = {
             -- right section. Both are highlighted by c theme .  So we
             -- are just setting default looks o statusline
             normal = {c = {fg = colors.fg, bg = colors.bg}},
-            inactive = {c = {fg = colors.fg, bg = colors.bg}}
+            inactive = {c = {fg = colors.fg, bg = colors.bg}},
+            tabline = {c = {fg = colors.fg, bg = colors.bg}}
         }
     },
     sections = {
@@ -62,6 +63,13 @@ local config = {
         lualine_z = {},
         lualine_c = {},
         lualine_x = {}
+    },
+    tabline = {
+        lualine_a = {
+            'filename',
+            condition = conditions.buffer_not_empty,
+            color = {fg = colors.magenta, gui = 'bold'},
+        }
     },
     extensions = {'quickfix', 'nvim-tree'}
 }
@@ -138,11 +146,11 @@ ins_left {
     condition = conditions.buffer_not_empty
 }
 
-ins_left {
-    'filename',
-    condition = conditions.buffer_not_empty,
-    color = {fg = colors.magenta, gui = 'bold'}
-}
+-- ins_left {
+--     'filename',
+--     condition = conditions.buffer_not_empty,
+--     color = {fg = colors.magenta, gui = 'bold'}
+-- }
 
 ins_left {'location'}
 
