@@ -66,9 +66,16 @@ local config = {
     },
     tabline = {
         lualine_a = {
-            'filename',
-            condition = conditions.buffer_not_empty,
-            color = {fg = colors.magenta, gui = 'bold'},
+            {'filename', path = 1},
+            -- 'filename',
+            -- condition = conditions.buffer_not_empty,
+            color = {fg = colors.magenta, gui = 'bold'}
+        },
+        lualine_z = {
+            'branch',
+            icon = '',
+            condition = conditions.check_git_workspace,
+            color = {fg = colors.violet, gui = 'bold'}
         }
     },
     extensions = {'quickfix', 'nvim-tree'}
@@ -203,12 +210,12 @@ ins_right {
     color = {fg = colors.green, gui = 'bold'}
 }
 
-ins_right {
-    'branch',
-    icon = '',
-    condition = conditions.check_git_workspace,
-    color = {fg = colors.violet, gui = 'bold'}
-}
+-- ins_right {
+--     'branch',
+--     icon = '',
+--     condition = conditions.check_git_workspace,
+--     color = {fg = colors.violet, gui = 'bold'}
+-- }
 
 ins_right {
     'diff',
