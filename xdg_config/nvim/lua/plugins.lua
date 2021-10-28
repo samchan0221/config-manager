@@ -49,6 +49,8 @@ return require('packer').startup(function()
     use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
 
+    use 'folke/trouble.nvim'
+
     use 'mhartington/formatter.nvim'
 
     use {'dracula/vim', as = 'dracula'}

@@ -1,10 +1,15 @@
 local default_opts = {noremap = true, silent = true}
+local trouble = require("trouble.providers.telescope")
 
 require'telescope'.setup {
     defaults = {
         layout_strategy = "vertical",
         color_devicons = true,
-        initial_mode = 'insert'
+        initial_mode = 'insert',
+        mappings = {
+            i = {["<c-q>"] = trouble.open_with_trouble},
+            n = {["<c-q>"] = trouble.open_with_trouble}
+        }
     },
     git_status = {initial_mode = "normal"}
 }
