@@ -12,11 +12,10 @@ cmp.setup {
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
     sources = {
-        {name = 'nvim_lsp'}, {name = 'vsnip'}, {name = 'buffer'},
+        {name = 'vsnip'}, {name = 'nvim_lsp'}, {name = 'buffer'},
         {name = 'nvim_lua'}
     }
 }
-
 
 -- Plugin: nvim-cmp
 vim.cmd(
