@@ -33,7 +33,7 @@ return require('packer').startup(function()
     use 'norcalli/nvim-colorizer.lua'
 
     use {
-        'hoob3rt/lualine.nvim',
+        'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
@@ -59,7 +59,7 @@ return require('packer').startup(function()
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        branch = '0.5-compat',
+        branch = 'master',
         run = 'TSUpdate'
     }
     use 'nvim-treesitter/playground'
