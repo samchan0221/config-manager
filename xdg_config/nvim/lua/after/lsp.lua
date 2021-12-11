@@ -52,6 +52,12 @@ local on_attach_tsserver = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
 
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            -- delay update diagnostics
+            update_in_insert = false
+        })
+
     local ts_utils = require("nvim-lsp-ts-utils")
 
     ts_utils.setup {
@@ -119,3 +125,16 @@ nvim_lsp.efm.setup {
         }
     }
 }
+
+nvim_lsp.hls.setup {}
+
+nvim_lsp.rls.setup {
+    settings = {
+        rust = {
+            unstable_features = true,
+            build_on_save = false,
+            all_features = true
+        }
+    }
+}
+
