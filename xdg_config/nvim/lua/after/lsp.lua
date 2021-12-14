@@ -128,13 +128,14 @@ nvim_lsp.efm.setup {
 
 nvim_lsp.hls.setup {}
 
-nvim_lsp.rls.setup {
+nvim_lsp.rust_analyzer.setup({
+    on_attach = on_attach,
     settings = {
-        rust = {
-            unstable_features = true,
-            build_on_save = false,
-            all_features = true
+        ["rust-analyzer"] = {
+            assist = {importGranularity = "module", importPrefix = "by_self"},
+            cargo = {loadOutDirsFromCheck = true},
+            procMacro = {enable = true}
         }
     }
-}
+})
 

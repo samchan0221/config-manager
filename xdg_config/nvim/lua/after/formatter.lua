@@ -1,4 +1,3 @@
-
 require('formatter').setup({
     filetype = {
         python = {
@@ -84,6 +83,6 @@ vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
   autocmd BufWritePost *py,*.jsx,*.js,*.graphql FormatWrite
-  autocmd BufWritePost *.ts,*.tsx,*.lua lua vim.lsp.buf.formatting_seq_sync()
+  autocmd BufWritePost *.ts,*.tsx,*.lua,*.rs lua vim.lsp.buf.formatting_seq_sync()
 augroup END
 ]], true)
