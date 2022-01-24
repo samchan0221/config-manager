@@ -81,7 +81,9 @@ local on_attach_tsserver = function(client, bufnr)
 
     common_on_attach()
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ia', ':TSLspImportAll',
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>lo', ':TSLspOrganize<CR>',
+                                {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ia', ':TSLspImportAll<CR>',
                                 {noremap = true, silent = true})
 end
 
@@ -98,8 +100,14 @@ nvim_lsp.gopls.setup {
 local null_ls = require("null-ls")
 local api = vim.api
 
-null_ls.config({debug = true, source = {}})
-nvim_lsp["null-ls"].setup({autostart = true})
+null_ls.setup({
+    sources = {
+        -- For my typescript development 
+        require("null-ls").builtins.formatting.prettier,
+        require("null-ls").builtins.diagnostics.eslint_d,
+        require("null-ls").builtins.code_actions.eslint_d
+    }
+})
 
 nvim_lsp.tsserver.setup {
     on_attach = on_attach_tsserver,
@@ -107,8 +115,6 @@ nvim_lsp.tsserver.setup {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol
                                                                    .make_client_capabilities())
 }
-
-nvim_lsp.eslint.setup {}
 
 nvim_lsp.efm.setup {
     init_options = {documentFormatting = true},
