@@ -70,6 +70,10 @@ local on_attach_tsserver = function(client, bufnr)
         import_all_scan_buffers = 100,
         import_all_select_source = false,
 
+        -- diagnostics
+        -- filter_out_diagnostics_by_severity = {"hint"},
+        -- filter_out_diagnostics_by_code = {80001},
+
         -- formatting
         enable_formatting = true,
         formatter = "prettier",
@@ -142,4 +146,17 @@ nvim_lsp.rust_analyzer.setup({
         }
     }
 })
+
+require'lspconfig'.yamlls.setup {
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+                ["/path/from/root/of/project"] = "/.github/workflows/*",
+                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml"
+            }
+        }
+    }
+}
 
