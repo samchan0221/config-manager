@@ -2,7 +2,7 @@ require('formatter').setup({
     filetype = {
         python = {
             function() return {exe = "isort", stdin = false} end,
-            function() return {exe = "black", stdin = true} end
+            function() return {exe = "black", stdin = false} end
         },
         javascript = {
             function()
