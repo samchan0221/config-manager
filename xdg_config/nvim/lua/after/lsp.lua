@@ -4,12 +4,8 @@ local util = require('lspconfig/util')
 local path = util.path
 
 local common_on_attach = function()
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(0, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(0, ...) end
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -18,10 +14,10 @@ local common_on_attach = function()
     local opts = {noremap = true, silent = true}
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gD', '', {callback = vim.lsp.buf.declaration})
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gd', '<cmd>Trouble lsp_definitions<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'K', '', {callback = vim.lsp.buf.hover})
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<space>wa',
                    '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)

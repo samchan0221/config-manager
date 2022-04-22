@@ -18,7 +18,11 @@ return require('packer').startup(function()
 
     use 'christoomey/vim-tmux-navigator'
 
-    use 'akinsho/toggleterm.nvim'
+    use {
+      'akinsho/toggleterm.nvim',
+      branch = 'main',
+      commit = 'dca8f4d'
+    }
 
     use 'Yggdroot/indentLine'
 
@@ -60,6 +64,7 @@ return require('packer').startup(function()
     use {
         'nvim-treesitter/nvim-treesitter',
         branch = 'master',
+        commit = '3c50297',
         run = 'TSUpdate'
     }
     use 'nvim-treesitter/playground'
