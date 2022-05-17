@@ -16,7 +16,8 @@ local common_on_attach = function()
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD', '', {callback = vim.lsp.buf.declaration})
     -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<cmd>Trouble lsp_definitions<CR>', opts)
+    buf_set_keymap('n', 'gd', '', {callback = vim.lsp.buf.definition})
+    -- buf_set_keymap('n', 'gd', '<cmd>Trouble lsp_definitions<CR>', opts)
     buf_set_keymap('n', 'K', '', {callback = vim.lsp.buf.hover})
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<space>wa',
@@ -165,6 +166,10 @@ nvim_lsp.rust_analyzer.setup({
             procMacro = {enable = true}
         }
     }
+})
+
+nvim_lsp.csharp_ls.setup({
+    on_attach = on_attach,
 })
 
 require'lspconfig'.yamlls.setup {
