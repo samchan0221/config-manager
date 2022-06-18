@@ -83,6 +83,6 @@ vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
   autocmd BufWritePost *py,*.jsx,*.js,*.graphql FormatWrite
-  autocmd BufWritePost *.ts,*.tsx,*.lua,*.rs,*.json,*.yaml,*.yml lua vim.lsp.buf.formatting_seq_sync({}, 5000)
+  autocmd BufWritePost *.ts,*.tsx,*.lua,*.rs,*.json,*.yaml,*.yml,*.cs lua vim.lsp.buf.formatting_seq_sync({}, 5000)
 augroup END
 ]], true)

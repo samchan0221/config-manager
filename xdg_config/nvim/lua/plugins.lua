@@ -16,13 +16,11 @@ return require('packer').startup(function()
 
     use 'neovim/nvim-lspconfig'
 
+    use {"williamboman/nvim-lsp-installer", "neovim/nvim-lspconfig"}
+
     use 'christoomey/vim-tmux-navigator'
 
-    use {
-      'akinsho/toggleterm.nvim',
-      branch = 'main',
-      commit = 'dca8f4d'
-    }
+    use {'akinsho/toggleterm.nvim', branch = 'main', commit = 'dca8f4d'}
 
     use 'Yggdroot/indentLine'
 
@@ -72,5 +70,6 @@ return require('packer').startup(function()
     use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim'}
 
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
+
 end)
 

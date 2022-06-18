@@ -3,6 +3,8 @@ local configs = require('lspconfig/configs')
 local util = require('lspconfig/util')
 local path = util.path
 
+require("nvim-lsp-installer").setup {}
+
 local common_on_attach = function()
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(0, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(0, ...) end
@@ -168,11 +170,14 @@ nvim_lsp.rust_analyzer.setup({
     }
 })
 
-nvim_lsp.csharp_ls.setup({
-    on_attach = on_attach,
-})
+nvim_lsp.omnisharp.setup {
+    cmd = {omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol
+                                                                   .make_client_capabilities()),
+    on_attach = common_on_attach
+}
 
-require'lspconfig'.yamlls.setup {
+nvim_lsp.yamlls.setup {
     settings = {
         yaml = {
             schemas = {
