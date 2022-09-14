@@ -140,7 +140,8 @@ nvim_lsp.tsserver.setup {
     on_attach = on_attach_tsserver,
     flags = {debounce_text_changes = 150},
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol
-                                                                   .make_client_capabilities())
+                                                                   .make_client_capabilities()),
+    root_dir = nvim_lsp.util.root_pattern("package.json"),
 }
 
 nvim_lsp.efm.setup {
@@ -160,7 +161,7 @@ nvim_lsp.efm.setup {
 nvim_lsp.hls.setup {}
 
 nvim_lsp.rust_analyzer.setup({
-    on_attach = on_attach,
+    on_attach = common_on_attach,
     settings = {
         ["rust-analyzer"] = {
             assist = {importGranularity = "module", importPrefix = "by_self"},
@@ -190,3 +191,18 @@ nvim_lsp.yamlls.setup {
     }
 }
 
+local css_capabilities = vim.lsp.protocol.make_client_capabilities()
+css_capabilities.textDocument.completion.completionItem.snippetSupport = true
+require'lspconfig'.cssls.setup {
+  capabilities = css_capabilities,
+}
+
+-- Deno
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+}
+
+nvim_lsp.denols.setup {
+  root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+  on_attach = common_on_attach
+}
